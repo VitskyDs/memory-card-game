@@ -21,6 +21,79 @@
 
 <body>
 
+    <nav>
+        <!--navigation-->
+        <div class="flex-container">
+            <div class="timer"></div>
+            <div class="reset-button desktop-only">reset</div>
+            <div class="heading"><h1>Memory card game</h1></div>
+            <div class="highscore-button  desktop-only">highscore</div>
+            <div class="rating"></div>
+            <div class="flex-container">
+                <div class="reset-button mobile-only">reset</div>
+                <div class="highscore-button mobile-only">highscore</div>
+            </div>
+        </div>
+    </nav>
+    <!--highscore-->
+    <div class="grid-container highscore">
+       <div class="flex-container">
+       <div class="back-button"></div>
+       <div class="heading"><h1>highscore</h1></div>
+        </div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!--reset popup-->
+    <div class="popup-container reset">
+        <div class="popup">
+            <h1>are you sure you want to reset the game?</h1>
+            <div class="flex-container">
+                <div class="approve-button">Yes</div>
+                <div class="cancel-button">Cancel</div>
+            </div>
+        </div>
+    </div>
+    <!--winner popup-->
+    <div class="popup-container winner">
+        <div class="popup">
+            <h1>winner!</h1>
+            <p>Enter name for High score</p>
+            <div class="input-wrapper">
+                <input type="text" placeholder="player">
+            </div>
+            <div class="flex-container">
+                <div class="approve-button">continue</div>
+            </div>
+        </div>
+    </div>
+    <!--main content-->
+    <main>
+        <div class="cards-container">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+    </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="js/script.min.js"></script>
 </body>
