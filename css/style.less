@@ -5,6 +5,7 @@
 3. Typography
 4. Grid
 5. Nav
+6. cards
 
 */
 
@@ -18,13 +19,13 @@
 /*generic*/
 
 .desktop-only {
-    display: none;
+    display: none !important;
 }
 .mobile-only {
-    display: block;
+    display: block !important;
 }
 .display-none {
-    display: none;
+    display: none !important;
 }
 body {
     border: 4px solid @primary;
@@ -61,41 +62,6 @@ p {}
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(4, 100px);
     grid-gap: 15px;
-    margin: 80px auto 0 auto;
-    .card {
-        position: relative;
-        height: 100%;
-        width: 100%;
-        border: 4px solid @secondary;
-        box-sizing: border-box;
-        box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
-        cursor: pointer;
-        transition: 200ms;
-        &.flipped {
-            transform: rotateY(180deg);
-            transform-style: preserve-3d;
-            box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
-        }
-        .side-a,
-        .side-b {
-            backface-visibility: hidden;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-        }
-        .side-a {
-            background: white url('../images/diagonal-01.svg') repeat;
-            background-size: cover;
-            transform: rotateY(0);
-        }
-        .side-b {
-            background: white;
-            transform: rotateY(180deg);
-        }
-    }
 }
 
 /*nav*/
@@ -109,11 +75,12 @@ nav {
         &>div {
             border: 4px solid @primary;
             box-sizing: border-box;
+            line-height: 42px;
+            font-size: 19px;
         }
         .timer {
             flex-basis: 80px;
             text-align: center;
-            line-height: 42px;
             font-size: 19px;
             border-left: none;
             border-top: none;
@@ -166,5 +133,95 @@ nav {
                 top: 45px;
             }
         }
+    }
+}
+
+/*cards*/
+
+.cards-container {
+    margin: 80px auto 0 auto;
+    .card {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        border: 4px solid @secondary;
+        box-sizing: border-box;
+        box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
+        cursor: pointer;
+        transition: 200ms;
+        &.flipped {
+            transform: rotateY(180deg);
+            transform-style: preserve-3d;
+            box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
+        }
+        .side-a,
+        .side-b {
+            backface-visibility: hidden;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .side-a {
+            background: white url('../images/diagonal-01.svg') repeat;
+            background-size: cover;
+            transform: rotateY(0);
+        }
+        .side-b {
+            background: white;
+            transform: rotateY(180deg);
+        }
+        &.card-1 {}
+        &.card-2 {}
+        &.card-3 {}
+        &.card-4 {}
+        &.card-5 {}
+        &.card-6 {}
+    }
+}
+@media screen and (min-width: 768px) {
+    /*generic*/
+    .desktop-only {
+        display: block !important;
+    }
+    .mobile-only {
+        display: none !important;
+    }
+    /*nav*/
+    nav {
+        .flex-container {
+            .reset-button,
+            .highscore-button {
+                flex-basis: 150px;
+                text-align: center;
+                &:hover {
+                    color: white;
+                    background: @primary;
+                    cursor: pointer;
+                }
+            }
+            .reset-button {
+                border-top: none;
+                border-left: none;
+            }
+            .highscore-button {
+                border-top: none;
+                border-right: none;
+            }
+            .sub-menu {
+                display: none !important;
+            }
+        }
+    }
+    /*Grid*/
+    .cards-container {
+        display: grid;
+        width: 660px;
+        grid-template-columns: repeat(4, 150px);
+        grid-template-rows: repeat(3, 150px);
+        grid-gap: 20xp;
+        margin: 80px auto 0 auto;
     }
 }

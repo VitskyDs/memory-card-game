@@ -6,19 +6,20 @@
 3. Typography
 4. Grid
 5. Nav
+6. cards
 
 */
 /*variables and imports*/
 @import url('https://fonts.googleapis.com/css?family=Barlow:700');
 /*generic*/
 .desktop-only {
-  display: none;
+  display: none !important;
 }
 .mobile-only {
-  display: block;
+  display: block !important;
 }
 .display-none {
-  display: none;
+  display: none !important;
 }
 body {
   border: 4px solid #00f2d6;
@@ -49,41 +50,6 @@ h1 {
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(4, 100px);
   grid-gap: 15px;
-  margin: 80px auto 0 auto;
-}
-.cards-container .card {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  border: 4px solid #9234a5;
-  box-sizing: border-box;
-  box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
-  cursor: pointer;
-  transition: 200ms;
-}
-.cards-container .card.flipped {
-  transform: rotateY(180deg);
-  transform-style: preserve-3d;
-  box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
-}
-.cards-container .card .side-a,
-.cards-container .card .side-b {
-  backface-visibility: hidden;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-.cards-container .card .side-a {
-  background: white url('../images/diagonal-01.svg') repeat;
-  background-size: cover;
-  transform: rotateY(0);
-}
-.cards-container .card .side-b {
-  background: white;
-  transform: rotateY(180deg);
 }
 /*nav*/
 nav {
@@ -95,11 +61,12 @@ nav {
 nav .flex-container > div {
   border: 4px solid #00f2d6;
   box-sizing: border-box;
+  line-height: 42px;
+  font-size: 19px;
 }
 nav .flex-container .timer {
   flex-basis: 80px;
   text-align: center;
-  line-height: 42px;
   font-size: 19px;
   border-left: none;
   border-top: none;
@@ -151,4 +118,83 @@ nav .flex-container .sub-menu .pull-down {
 }
 nav .flex-container .sub-menu.sub-menu-open {
   top: 45px;
+}
+/*cards*/
+.cards-container {
+  margin: 80px auto 0 auto;
+}
+.cards-container .card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border: 4px solid #9234a5;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
+  cursor: pointer;
+  transition: 200ms;
+}
+.cards-container .card.flipped {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
+}
+.cards-container .card .side-a,
+.cards-container .card .side-b {
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.cards-container .card .side-a {
+  background: white url('../images/diagonal-01.svg') repeat;
+  background-size: cover;
+  transform: rotateY(0);
+}
+.cards-container .card .side-b {
+  background: white;
+  transform: rotateY(180deg);
+}
+@media screen and (min-width: 768px) {
+  /*generic*/
+  .desktop-only {
+    display: block !important;
+  }
+  .mobile-only {
+    display: none !important;
+  }
+  /*nav*/
+  nav .flex-container .reset-button,
+  nav .flex-container .highscore-button {
+    flex-basis: 150px;
+    text-align: center;
+  }
+  nav .flex-container .reset-button:hover,
+  nav .flex-container .highscore-button:hover {
+    color: white;
+    background: #00f2d6;
+    cursor: pointer;
+  }
+  nav .flex-container .reset-button {
+    border-top: none;
+    border-left: none;
+  }
+  nav .flex-container .highscore-button {
+    border-top: none;
+    border-right: none;
+  }
+  nav .flex-container .sub-menu {
+    display: none !important;
+  }
+  /*Grid*/
+  .cards-container {
+    display: grid;
+    width: 660px;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(3, 150px);
+    grid-gap: 20xp;
+    margin: 80px auto 0 auto;
+  }
 }
