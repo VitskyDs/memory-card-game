@@ -21,6 +21,17 @@
 .display-none {
   display: none !important;
 }
+.full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 4px solid #00f2d6;
+  background: white url('../images/dot-blue-XS-01-01.png') repeat;
+  background-size: 8px;
+  box-sizing: border-box;
+}
 body {
   border: 4px solid #00f2d6;
   background: white url('../images/dot-blue-XS-01-01.png') repeat;
@@ -141,6 +152,58 @@ nav .flex-container .sub-menu .pull-down .arrow {
 }
 nav .flex-container .sub-menu.sub-menu-open {
   top: 45px;
+}
+/*highscore*/
+.highscore {
+  background: white;
+  z-index: 20;
+}
+.highscore .flex-container {
+  position: relative;
+  height: 45px;
+  background: white;
+  box-sizing: border-box;
+  box-shadow: 0 5px 0 0 rgba(0, 224, 246, 0.25);
+  border-bottom: 4px solid #00f2d6;
+  justify-content: center;
+}
+.highscore .flex-container .back-button {
+  position: absolute;
+  left: 10px;
+  top: 11px;
+  width: 10px;
+  height: 10px;
+  border-top: white solid 9px;
+  border-right: #00f2d6 solid 13px;
+  border-bottom: white solid 9px;
+  box-sizing: border-box;
+}
+.highscore ul {
+  display: grid;
+  grid-template-rows: 50px;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.highscore ul li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4px solid #00f2d6;
+  padding: 10px;
+  align-items: center;
+  height: 45px;
+  box-sizing: border-box;
+}
+.highscore .explanation {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 4px solid #00f2d6;
+  padding: 10px;
+  align-items: center;
+  height: 90px;
+  box-sizing: border-box;
 }
 /*cards*/
 .cards-container {
