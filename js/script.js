@@ -41,7 +41,7 @@ reset();
 /*Buttons*/
 
 $('.reset-button').on('click', function () {
-    reset();
+    // open reset popup
 });
 
 $('.highscore-button').on('click', function () {
@@ -53,7 +53,8 @@ $('.back-button').on('click', function () {
 });
 
 $('.pull-down').on('click', function () {
-    // toggle .submenu-open class on .sebmenu
+    $(this).toggleClass('down');
+    $(this).parent().toggleClass('sub-menu-open')
 });
 
 

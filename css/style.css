@@ -63,6 +63,8 @@ nav .flex-container > div {
   box-sizing: border-box;
   line-height: 42px;
   font-size: 19px;
+  z-index: 10;
+  background: white;
 }
 nav .flex-container .timer {
   flex-basis: 80px;
@@ -84,7 +86,7 @@ nav .flex-container .heading h1 {
 nav .flex-container .rating {
   flex-basis: 80px;
   height: 45px;
-  background: url('../images/rating-3-3.svg') center center no-repeat;
+  background: white url('../images/rating-3-3.svg') center center no-repeat;
   background-size: 65px;
   border-top: none;
   border-right: none;
@@ -92,20 +94,25 @@ nav .flex-container .rating {
 nav .flex-container .sub-menu {
   position: absolute;
   top: 0;
+  left: 0;
   background: white;
-  z-index: -1;
+  z-index: 0 !important;
   display: flex;
   justify-content: space-between;
   height: 45px;
   width: 100%;
   border: none;
   transition: 150ms top ease;
+  cursor: pointer;
+  box-shadow: 0 5px 0 0 rgba(0, 224, 246, 0.25);
 }
 nav .flex-container .sub-menu div {
   flex-basis: 50%;
   text-align: center;
   line-height: 40px;
-  border-left: none;
+}
+nav .flex-container .sub-menu .reset-button {
+  border-right: none;
 }
 nav .flex-container .sub-menu .pull-down {
   position: absolute;
@@ -115,6 +122,22 @@ nav .flex-container .sub-menu .pull-down {
   top: 45px;
   left: 50%;
   transform: translateX(-50%);
+}
+nav .flex-container .sub-menu .pull-down.down .arrow {
+  transform: rotate(180deg);
+  top: 1px;
+}
+nav .flex-container .sub-menu .pull-down .arrow {
+  position: relative;
+  top: 7px;
+  left: 11px;
+  height: 10px;
+  width: 10px;
+  box-sizing: border-box;
+  border-left: transparent solid 5px;
+  border-right: transparent solid 5px;
+  border-top: white solid 8px;
+  transition: all 150ms ease;
 }
 nav .flex-container .sub-menu.sub-menu-open {
   top: 45px;
