@@ -17,12 +17,16 @@ const reset = function () {
     placeCards();
     // reset timer
     // reset rating
+    // hide all popups
+    $('.highscore').fadeOut(0);
+    $('.reset').fadeOut(0);
+
 }
 
 const placeCards = function () {
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
-        newCard.classList.add('card', 'card-'+cardArray[i]);
+        newCard.classList.add('card', 'card-' + cardArray[i]);
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
         fragment.appendChild(newCard);
     }
@@ -37,12 +41,13 @@ const updateGameStats = function () {
 /*Initial game reset*/
 
 reset();
-$('.highscore').fadeOut(0);
 
 /*Buttons*/
 
 $('.reset-button').on('click', function () {
-    // open reset popup
+    $('.reset').fadeIn(0);
+    $('.pull-down').toggleClass('down');
+    $('.sub-menu').removeClass('sub-menu-open');
 });
 
 $('.highscore-button, .back-button').on('click', function () {
@@ -51,17 +56,14 @@ $('.highscore-button, .back-button').on('click', function () {
 });
 
 $('.pull-down').on('click', function () {
-    $(this).toggleClass('down');
-    $(this).parent().toggleClass('sub-menu-open')
+    $('.pull-down').toggleClass('down');
+    $('.sub-menu').parent().toggleClass('sub-menu-open')
 });
-
-
 
 /*reset popup*/
 
 $('.reset-approve').on('click', function () {
-    // close popup
-    // reset();
+    reset();
 });
 
 $('.winner-approve').on('click', function () {
@@ -70,8 +72,10 @@ $('.winner-approve').on('click', function () {
     // reset();
 });
 
-$('.reset-cancel').on('click', function () {
+$('.cancel-button').on('click', function () {
     // close popup
+    $(this).closest('.popup-container').fadeOut(0);
+
 });
 
 /*input player name*/

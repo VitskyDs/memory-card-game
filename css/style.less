@@ -49,6 +49,10 @@
         background: white;
         text-align: center;
         line-height: 100%;
+        box-shadow: 5px 5px 0 0 rgba(146, 52, 165, 0.5);
+        h2 {
+            margin: 30px 0;
+        }
         .flex-container {
             justify-content: space-between;
             align-items: center;
@@ -313,6 +317,13 @@ nav {
         grid-template-rows: repeat(4, 100px);
         grid-gap: 15px;
         padding: 0;
+    }
+}
+@media screen and (min-width: 360px) {
+    .popup-container {
+        .popup {
+            width: 320px;
+        }
     }
 }
 @media screen and (min-width: 768px) {
