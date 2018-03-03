@@ -42,6 +42,12 @@ $('.back-button').on('click', function () {
     // close highscore div
 });
 
+$('.pull-down').on('click', function () {
+    // toggle .submenu-open class on .sebmenu
+});
+
+
+
 /*reset popup*/
 
 $('.reset-approve').on('click', function () {
@@ -68,6 +74,7 @@ $('#player-name-input').on('update', function () {
 /*card interaction*/
 
 $('.card').on('click', function () {
+    this.classList.toggle("flipped");
     // toggle .flipped class on card
     // add 1 click to counter
     // modify counter

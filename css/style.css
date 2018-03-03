@@ -52,13 +52,38 @@ h1 {
   margin: 80px auto 0 auto;
 }
 .cards-container .card {
+  position: relative;
   height: 100%;
   width: 100%;
   border: 4px solid #9234a5;
   box-sizing: border-box;
   box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
+  cursor: pointer;
+  transition: 200ms;
+}
+.cards-container .card.flipped {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
+}
+.cards-container .card .side-a,
+.cards-container .card .side-b {
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.cards-container .card .side-a {
   background: white url('../images/diagonal-01.svg') repeat;
   background-size: cover;
+  transform: rotateY(0);
+}
+.cards-container .card .side-b {
+  background: white;
+  transform: rotateY(180deg);
 }
 /*nav*/
 nav {

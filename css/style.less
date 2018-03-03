@@ -63,13 +63,38 @@ p {}
     grid-gap: 15px;
     margin: 80px auto 0 auto;
     .card {
+        position: relative;
         height: 100%;
         width: 100%;
         border: 4px solid @secondary;
         box-sizing: border-box;
         box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
-        background: white url('../images/diagonal-01.svg') repeat;
-        background-size: cover;
+        cursor: pointer;
+        transition: 200ms;
+        &.flipped {
+            transform: rotateY(180deg);
+            transform-style: preserve-3d;
+            box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
+        }
+        .side-a,
+        .side-b {
+            backface-visibility: hidden;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .side-a {
+            background: white url('../images/diagonal-01.svg') repeat;
+            background-size: cover;
+            transform: rotateY(0);
+        }
+        .side-b {
+            background: white;
+            transform: rotateY(180deg);
+        }
     }
 }
 
