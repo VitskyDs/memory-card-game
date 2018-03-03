@@ -15,7 +15,7 @@
     <link rel="canonical" href="index.html">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -24,38 +24,30 @@
     <nav>
         <!--navigation-->
         <div class="flex-container">
-            <div class="timer"></div>
+            <div class="timer">00:00</div>
             <div class="reset-button desktop-only">reset</div>
             <div class="heading"><h1>Memory card game</h1></div>
             <div class="highscore-button  desktop-only">highscore</div>
             <div class="rating"></div>
-            <div class="flex-container">
-                <div class="reset-button mobile-only">reset</div>
-                <div class="highscore-button mobile-only">highscore</div>
+            <div class="sub-menu flex-container mobile-only">
+                <div class="reset-button ">reset</div>
+                <div class="highscore-button">highscore</div>
+                <div class="pull-down"></div>
             </div>
         </div>
     </nav>
     <!--highscore-->
-    <div class="grid-container highscore">
+    <div class="grid-container highscore display-none">
        <div class="flex-container">
        <div class="back-button"></div>
        <div class="heading"><h1>highscore</h1></div>
         </div>
         <ul>
             <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
         </ul>
     </div>
     <!--reset popup-->
-    <div class="popup-container reset">
+    <div class="popup-container reset display-none">
         <div class="popup">
             <h1>are you sure you want to reset the game?</h1>
             <div class="flex-container">
@@ -65,7 +57,7 @@
         </div>
     </div>
     <!--winner popup-->
-    <div class="popup-container winner">
+    <div class="popup-container winner display-none">
         <div class="popup">
             <h1>winner!</h1>
             <p>Enter name for High score</p>
