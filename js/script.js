@@ -37,6 +37,7 @@ const updateGameStats = function () {
 /*Initial game reset*/
 
 reset();
+$('.highscore').fadeOut(0);
 
 /*Buttons*/
 
@@ -44,12 +45,9 @@ $('.reset-button').on('click', function () {
     // open reset popup
 });
 
-$('.highscore-button').on('click', function () {
-    // open highscore div
-});
-
-$('.back-button').on('click', function () {
-    // close highscore div
+$('.highscore-button, .back-button').on('click', function () {
+    $('.highscore').fadeToggle(0);
+    $('.sub-menu').removeClass('sub-menu-open');
 });
 
 $('.pull-down').on('click', function () {
