@@ -1,6 +1,7 @@
 let counter = 0,
     cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     matches = 0,
+    fragment = document.createDocumentFragment(),
     gameStats = {
         rating: 1,
         time: '00:00',
@@ -8,25 +9,34 @@ let counter = 0,
         score: 1
     };
 
-
 const reset = function () {
-    // remove .flipped class from all the cards
-    // reset the board by randomizing the array cardArray.sort(function() { return 0.5 - Math.random() });
-    // placeCards();
+    // reset the board by randomizing the array
+    cardArray.sort(function () {
+        return 0.5 - Math.random()
+    });
+    placeCards();
     // reset timer
     // reset rating
 }
 
 const placeCards = function () {
-    // create fragment
-    // a loop that places each card on the board by the order of the array
-    // remove existing cards
-    // add fragment to body
+    for (let i = 0; i < 12; i++) {
+        const newCard = document.createElement('div');
+        newCard.classList.add('card', 'card-'+cardArray[i]);
+        newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
+        fragment.appendChild(newCard);
+    }
+    $('.cards-container').empty();
+    $('.cards-container').append(fragment);
 }
 
 const updateGameStats = function () {
     // update game stats
 };
+
+/*Initial game reset*/
+
+reset();
 
 /*Buttons*/
 
