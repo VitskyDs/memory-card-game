@@ -5,13 +5,19 @@
 2. Generic
 3. Typography
 4. Grid
-5. Nav
-6. cards
+5. nav
+6. Cards
 
 */
 /*variables and imports*/
 @import url('https://fonts.googleapis.com/css?family=Barlow:700');
 /*generic*/
+* {
+  cursor: default;
+}
+.button {
+  cursor: pointer;
+}
 .desktop-only {
   display: none !important;
 }
@@ -256,7 +262,7 @@ nav .flex-container .sub-menu.sub-menu-open {
   box-sizing: border-box;
   box-shadow: 5px 5px 0 0 rgba(0, 242, 214, 0.5);
   cursor: pointer;
-  transition: 200ms;
+  transition: all 250ms ease;
 }
 .cards-container .card.flipped {
   transform: rotateY(180deg);
@@ -305,6 +311,14 @@ nav .flex-container .sub-menu.sub-menu-open {
   .mobile-only {
     display: none !important;
   }
+  .button:hover {
+    background-color: #00f2d6;
+    color: white;
+  }
+  /*popup*/
+  .highscore {
+    background: white url('../images/dot-blue-XS-01-01.png') repeat;
+  }
   /*nav*/
   nav .flex-container .reset-button,
   nav .flex-container .highscore-button {
@@ -336,5 +350,27 @@ nav .flex-container .sub-menu.sub-menu-open {
     grid-template-rows: repeat(3, 150px);
     grid-gap: 20xp;
     margin: 80px auto 0 auto;
+  }
+  /*highscore*/
+  .highscore ul {
+    display: grid;
+    grid-template-rows: 50px;
+    width: 450px;
+    list-style: none;
+    margin: 50px auto 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    border: 4px solid;
+    background: white;
+  }
+  .highscore ul li:last-of-type {
+    border: none;
+  }
+  .highscore .explanation {
+    width: 450px;
+    background: white;
+    margin: 0 auto;
+    border: 4px solid;
+    border-top: none;
   }
 }
