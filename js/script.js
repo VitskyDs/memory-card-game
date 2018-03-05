@@ -1,6 +1,6 @@
-let counter = 0,
-    cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     matches = 0,
+    card = '',
     fragment = document.createDocumentFragment(),
     gameStats = {
         rating: 1,
@@ -11,9 +11,7 @@ let counter = 0,
 
 const reset = function () {
     // reset the board by randomizing the array
-    cardArray.sort(function () {
-        return 0.5 - Math.random()
-    });
+    //cardArray.sort(function () {return 0.5 - Math.random()});
     placeCards();
     // reset timer
     // reset rating
@@ -26,7 +24,8 @@ const reset = function () {
 const placeCards = function () {
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
-        newCard.classList.add('card', 'card-' + cardArray[i]);
+        newCard.classList.add('card');
+        $(newCard).attr('data', 'card-' + cardArray[i]);
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
         fragment.appendChild(newCard);
     }
@@ -87,13 +86,32 @@ $('#player-name-input').on('update', function () {
 /*card interaction*/
 
 $('.card').on('click', function () {
-    this.classList.toggle("flipped");
+
     // toggle .flipped class on card
-    // add 1 click to counter
-    // modify counter
-    // determine star rating by evaluating counter
-    // modify star rating
+    this.classList.toggle("flipped");
+    // add 1 click to clicks
+    gameStats.clicks++;
+    // determine star rating by evaluating clicks
+    if (gameStats.clicks > 12 && gameStats.clicks < 18) {
+        $('.rating').addClass('rating-2-3');
+    } else if (gameStats.clicks >= 18) {
+        $('.rating').addClass('rating-1-3');
+    }
     // evaluate cards
+    if (card === $(this).attr('data')) {
+        matches++;
+        $('*[data=' + card + ']').addClass('done');
+        console.log(matches);
+        card = '';
+    } else if (gameStats.clicks % 2 === 0) {
+        setTimeout(function () {
+            $('.card').removeClass('flipped');
+        }, 1500);
+        card = '';
+    } else {
+        card = $(this).attr('data');
+
+    }
     // if cards match add class complete and remove flipped, add 1 to let matches
     // else remove flipped class from cards
     // if all cards are matched (matches === 6)

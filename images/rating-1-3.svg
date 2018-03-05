@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="49px" height="14px" viewBox="0 0 49 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="24.5 11.25 20.0916106 13.5676275 20.9335381 8.65881373 17.3670761 5.18237254 22.2958053 4.46618627 24.5 0 26.7041947 4.46618627 31.6329239 5.18237254 28.0664619 8.65881373 28.9083894 13.5676275"></polygon>
+        <polygon id="path-2" points="41.5 11.25 37.0916106 13.5676275 37.9335381 8.65881373 34.3670761 5.18237254 39.2958053 4.46618627 41.5 0 43.7041947 4.46618627 48.6329239 5.18237254 45.0664619 8.65881373 45.9083894 13.5676275"></polygon>
+    </defs>
+    <g id="Design-V02" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Page-Copy" transform="translate(-262.000000, -13.000000)">
+            <g id="Nav">
+                <g id="Star-Rating" transform="translate(252.000000, 0.000000)">
+                    <g id="Group" transform="translate(10.000000, 13.000000)">
+                        <polygon id="Star-2" fill="#00F2D6" points="7.5 11.25 3.09161061 13.5676275 3.93353806 8.65881373 0.367076128 5.18237254 5.2958053 4.46618627 7.5 0 9.7041947 4.46618627 14.6329239 5.18237254 11.0664619 8.65881373 11.9083894 13.5676275"></polygon>
+                        <g id="Star-2-Copy">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            <path stroke="#00F2D6" stroke-width="1" d="M28.2443239,12.6536197 L27.5292217,8.48425378 L30.5584433,5.53149244 L26.3721619,4.92319015 L24.5,1.12977573 L22.6278381,4.92319015 L18.4415567,5.53149244 L21.4707783,8.48425378 L20.7556761,12.6536197 L24.5,10.6851121 L28.2443239,12.6536197 Z"></path>
+                        </g>
+                        <g id="Star-2-Copy-2">
+                            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                            <path stroke="#00F2D6" stroke-width="1" d="M45.2443239,12.6536197 L44.5292217,8.48425378 L47.5584433,5.53149244 L43.3721619,4.92319015 L41.5,1.12977573 L39.6278381,4.92319015 L35.4415567,5.53149244 L38.4707783,8.48425378 L37.7556761,12.6536197 L41.5,10.6851121 L45.2443239,12.6536197 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

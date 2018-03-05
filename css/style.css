@@ -147,6 +147,12 @@ nav .flex-container .rating {
   border-top: none;
   border-right: none;
 }
+nav .flex-container .rating.rating-2-3 {
+  background-image: url('../images/rating-2-3.svg');
+}
+nav .flex-container .rating.rating-1-3 {
+  background-image: url('../images/rating-1-3.svg') !important;
+}
 nav .flex-container .sub-menu {
   position: absolute;
   top: 0;
@@ -269,6 +275,11 @@ nav .flex-container .sub-menu.sub-menu-open {
   transform-style: preserve-3d;
   box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
 }
+.cards-container .card.done {
+  transform: rotateY(180deg);
+  transform-style: preserve-3d;
+  box-shadow: -5px 5px 0 0 rgba(0, 242, 214, 0.5);
+}
 .cards-container .card .side-a,
 .cards-container .card .side-b {
   backface-visibility: hidden;
@@ -318,6 +329,7 @@ nav .flex-container .sub-menu.sub-menu-open {
   /*popup*/
   .highscore {
     background: white url('../images/dot-blue-XS-01-01.png') repeat;
+    background-size: 8px;
   }
   /*nav*/
   nav .flex-container .reset-button,
