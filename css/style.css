@@ -299,6 +299,30 @@ nav .flex-container .sub-menu.sub-menu-open {
   background: white;
   transform: rotateY(180deg);
 }
+.cards-container .card.card-1 .side-b {
+  background: white url('../images/bulbasaur.svg') no-repeat center center;
+  background-size: 80px;
+}
+.cards-container .card.card-2 .side-b {
+  background: white url('../images/charmander.svg') no-repeat center center;
+  background-size: 80px;
+}
+.cards-container .card.card-3 .side-b {
+  background: white url('../images/pokeball.svg') no-repeat center center;
+  background-size: 80px;
+}
+.cards-container .card.card-4 .side-b {
+  background: white url('../images/jigglypuff.svg') no-repeat center center;
+  background-size: 80px;
+}
+.cards-container .card.card-5 .side-b {
+  background: white url('../images/pikachu.svg') no-repeat center center;
+  background-size: 80px;
+}
+.cards-container .card.card-6 .side-b {
+  background: white url('../images/squirtle.svg') no-repeat center center;
+  background-size: 80px;
+}
 @media screen and (min-width: 360px) {
   .cards-container {
     display: grid;

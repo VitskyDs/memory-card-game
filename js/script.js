@@ -25,6 +25,8 @@ const placeCards = function () {
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
+        newCard.classList.add('card-' + cardArray[i]);
+
         $(newCard).attr('data', 'card-' + cardArray[i]);
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
         fragment.appendChild(newCard);
@@ -106,11 +108,10 @@ $('.card').on('click', function () {
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
             $('.card').removeClass('flipped');
-        }, 1500);
+        }, 1100);
         card = '';
     } else {
         card = $(this).attr('data');
-
     }
     // if cards match add class complete and remove flipped, add 1 to let matches
     // else remove flipped class from cards
