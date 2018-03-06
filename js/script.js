@@ -2,8 +2,10 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     matches = 0,
     cardData = '',
     cardId = 13,
+    score = 0,
     fragment = document.createDocumentFragment(),
     gameStats = {
+        playerName: '',
         rating: 1,
         time: '00:00',
         clicks: 0,
@@ -13,16 +15,6 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
 const reset = function () {
     // reset the board by randomizing the array
     // cardArray.sort(function () {return 0.5 - Math.random()});
-    placeCards();
-    // reset timer
-    // reset rating
-    // hide all popups
-    $('.highscore').fadeOut(0);
-    $('.reset').fadeOut(0);
-
-}
-
-const placeCards = function () {
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
@@ -33,7 +25,13 @@ const placeCards = function () {
         fragment.appendChild(newCard);
     }
     $('.cards-container').empty();
-    $('.cards-container').append(fragment);
+    $('.cards-container').append(fragment); // reset timer
+    // reset rating and matches
+    matches = 0;
+    $('.rating').removeClass('rating-2-3 rating-1-3');
+    // hide all popups
+    $('.full-screen').fadeOut(0);
+
 }
 
 const updateGameStats = function () {
@@ -68,16 +66,17 @@ $('.reset-approve').on('click', function () {
     reset();
 });
 
-$('.winner-approve').on('click', function () {
-    // close winner popup
-    // open highscore
-    // reset();
-});
-
 $('.cancel-button').on('click', function () {
     // close popup
     $(this).closest('.popup-container').fadeOut(0);
 
+});
+
+$('#winner-approve').on('click', function () {
+    $('.winner').addClass('display-none');
+    gameStats.playerName = $('#playerName').val();
+    reset();
+    $('.highscore').fadeIn(0);
 });
 
 /*input player name*/
@@ -88,7 +87,7 @@ $('#player-name-input').on('update', function () {
 
 /*card interaction*/
 
-$('.card').on('click', function () {
+$(document).on('click', '.card', function () {
     // toggle .flipped class on card
     this.classList.toggle("flipped");
     // add 1 click to clicks
@@ -122,13 +121,15 @@ $('.card').on('click', function () {
 
     //
     if (matches === 6) {
-        $('.winner').removeClass('display-none');
-    // stop timer
-    // updateGameStats();
-
-    // calculate score based on time and number of clicks
-    // save gameStats to a new local storage
-    // add gameStats to leader board
-    // display popup of success with leaderboard
+        setTimeout(function () {
+            $('.winner').removeClass('display-none');
+        }, 500);
+        // stop timer
+        // updateGameStats();
+        // score = timer * gameStats.click;
+        // save gameStats to a new local storage
+        // localStorage.setItem();
+        // add gameStats to leader board
+        // display popup of success with leaderboard
     }
 });
