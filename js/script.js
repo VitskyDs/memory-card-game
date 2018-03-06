@@ -7,12 +7,12 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     gameStats = {
         playerName: '',
         rating: 1,
-        time: '00:00',
+        timer: '00:00',
         clicks: 0,
         score: 1
     };
 
-const reset = function () {
+const gameReset = function () {
     // reset the board by randomizing the array
     // cardArray.sort(function () {return 0.5 - Math.random()});
     for (let i = 0; i < 12; i++) {
@@ -40,7 +40,7 @@ const updateGameStats = function () {
 
 /*Initial game reset*/
 
-reset();
+gameReset();
 
 /*Buttons*/
 
@@ -75,7 +75,8 @@ $('.cancel-button').on('click', function () {
 $('#winner-approve').on('click', function () {
     $('.winner').addClass('display-none');
     gameStats.playerName = $('#playerName').val();
-    reset();
+    localStorage.setItem(gameStats.playerName, gameStats.score);
+    gameReset();
     $('.highscore').fadeIn(0);
 });
 
@@ -121,15 +122,59 @@ $(document).on('click', '.card', function () {
 
     //
     if (matches === 6) {
+
+        // stop timer
+        // update score
+        gameStats.score = gameStats.timer * gameStats.clicks;
+        // display popup of success
         setTimeout(function () {
             $('.winner').removeClass('display-none');
         }, 500);
-        // stop timer
-        // updateGameStats();
-        // score = timer * gameStats.click;
-        // save gameStats to a new local storage
-        // localStorage.setItem();
-        // add gameStats to leader board
-        // display popup of success with leaderboard
     }
 });
+
+/*timer*/
+
+var stopwatch = function (my_element_id) {
+    var $time = document.getElementById('timer')
+    if (!$time) return
+
+    var api = {}
+    var duration = 1000
+    var time = 0
+    var clocktimer
+    var h, m, s, ms
+
+    function pad(num, size) {
+        var s = "0000" + String(num)
+        return s.substr(s.length - size)
+    }
+
+    function formatTime() {
+        time += duration
+        h = Math.floor(time / (60 * 60 * 1000))
+        m = Math.floor(time / (60 * 1000) % 60)
+        s = Math.floor(time / 1000 % 60)
+        ms = time % 1000 / 10
+        return pad(m, 2) + ':' + pad(s, 2)
+    }
+
+    function update() {
+        $time.innerHTML = formatTime()
+    }
+
+    api.start = function () {
+        clocktimer = setInterval(update, duration)
+    }
+
+    api.stop = function () {
+        clearInterval(clocktimer)
+    }
+
+    api.formatTime = formatTime
+
+    return api
+}
+
+var my_stopwatch = stopwatch('stopwatch');
+my_stopwatch.start();
