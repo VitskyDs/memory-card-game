@@ -17,6 +17,7 @@
 }
 .button {
   cursor: pointer;
+  flex-grow: 1;
 }
 .desktop-only {
   display: none !important;

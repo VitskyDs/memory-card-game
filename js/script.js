@@ -12,7 +12,7 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
 
 const reset = function () {
     // reset the board by randomizing the array
-    cardArray.sort(function () {return 0.5 - Math.random()});
+    // cardArray.sort(function () {return 0.5 - Math.random()});
     placeCards();
     // reset timer
     // reset rating
@@ -59,7 +59,7 @@ $('.highscore-button, .back-button').on('click', function () {
 
 $('.pull-down').on('click', function () {
     $('.pull-down').toggleClass('down');
-    $('.sub-menu').parent().toggleClass('sub-menu-open')
+    $('.sub-menu').toggleClass('sub-menu-open')
 });
 
 /*reset popup*/
@@ -96,8 +96,10 @@ $('.card').on('click', function () {
     // determine star rating by evaluating clicks
     if (gameStats.clicks > 14 && gameStats.clicks < 20) {
         $('.rating').addClass('rating-2-3');
+        gameStats.rating = 2;
     } else if (gameStats.clicks >= 20) {
         $('.rating').addClass('rating-1-3');
+        gameStats.rating = 3;
     }
     // evaluate cards
     if (cardData === $(this).attr('data') && cardId != $(this).attr('id')) {
@@ -120,13 +122,13 @@ $('.card').on('click', function () {
 
     //
     if (matches === 6) {
-
-    }
-    // if all cards are matched (matches === 6)
+        $('.winner').removeClass('display-none');
     // stop timer
     // updateGameStats();
+
     // calculate score based on time and number of clicks
     // save gameStats to a new local storage
     // add gameStats to leader board
     // display popup of success with leaderboard
+    }
 });
