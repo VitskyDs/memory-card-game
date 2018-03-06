@@ -1,6 +1,7 @@
 let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     matches = 0,
-    card = '',
+    cardData = '',
+    cardId = 13,
     fragment = document.createDocumentFragment(),
     gameStats = {
         rating: 1,
@@ -11,7 +12,7 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
 
 const reset = function () {
     // reset the board by randomizing the array
-    //cardArray.sort(function () {return 0.5 - Math.random()});
+    cardArray.sort(function () {return 0.5 - Math.random()});
     placeCards();
     // reset timer
     // reset rating
@@ -26,7 +27,7 @@ const placeCards = function () {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
         newCard.classList.add('card-' + cardArray[i]);
-
+        $(newCard).attr('id', i);
         $(newCard).attr('data', 'card-' + cardArray[i]);
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
         fragment.appendChild(newCard);
@@ -88,33 +89,39 @@ $('#player-name-input').on('update', function () {
 /*card interaction*/
 
 $('.card').on('click', function () {
-
     // toggle .flipped class on card
     this.classList.toggle("flipped");
     // add 1 click to clicks
     gameStats.clicks++;
     // determine star rating by evaluating clicks
-    if (gameStats.clicks > 12 && gameStats.clicks < 18) {
+    if (gameStats.clicks > 14 && gameStats.clicks < 20) {
         $('.rating').addClass('rating-2-3');
-    } else if (gameStats.clicks >= 18) {
+    } else if (gameStats.clicks >= 20) {
         $('.rating').addClass('rating-1-3');
     }
     // evaluate cards
-    if (card === $(this).attr('data')) {
+    if (cardData === $(this).attr('data') && cardId != $(this).attr('id')) {
+        $('*[data=' + cardData + ']').addClass('done');
+        cardData = '';
         matches++;
-        $('*[data=' + card + ']').addClass('done');
+        cardId = $(this).attr('id');
+        console.log(cardId);
         console.log(matches);
-        card = '';
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
             $('.card').removeClass('flipped');
-        }, 1100);
-        card = '';
+        }, 1000);
+        cardData = '';
+        cardId = $(this).attr('id');
     } else {
-        card = $(this).attr('data');
+        cardData = $(this).attr('data');
+        cardId = $(this).attr('id');
     }
-    // if cards match add class complete and remove flipped, add 1 to let matches
-    // else remove flipped class from cards
+
+    //
+    if (matches === 6) {
+
+    }
     // if all cards are matched (matches === 6)
     // stop timer
     // updateGameStats();
