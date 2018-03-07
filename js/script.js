@@ -7,7 +7,7 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     gameStats = {
         playerName: '',
         rating: 1,
-        timer: '00:00',
+        timer: '',
         clicks: 0,
         score: 1
     };
@@ -20,13 +20,10 @@ const rating = document.getElementById('rating'),
     subMenu = document.getElementById('sub-menu'),
     cardsContainer = document.getElementById('cards-container'),
     card = document.getElementsByClassName('card'),
-    resetButton = document.getElementsByClassName('reset-button');
-
-/**/
-clock = $('#timer').timer({
-    format: '%M:%S'
-});
-clock.timer('pause');
+    resetButton = document.getElementsByClassName('reset-button'),
+    clock = $('#timer').timer({
+        format: '%M:%S'
+    });
 
 /*Buttons*/
 
@@ -60,10 +57,7 @@ $('#winner-approve').on('click', function () {
     localStorage.setItem('score', gameStats.score);
     localStorage.setItem('player', gameStats.playerName);
     // use local storage add rows to highscore
-    //$(highscore).find('ul').prepend('li').html('<span class="player">' + localStorage.getItem('player') + '</span><span class="score">' + localStorage.getItem('score') + '</span>');
-    //const row = document.createElement('li');
     document.querySelector('ul').insertAdjacentHTML('afterbegin', '<li><span class="player">' + localStorage.getItem('player') + '</span><span class="score">' + localStorage.getItem('score') + '</span></li>');
-    //document.querySelector('ul').appendChild(row);
     gameReset();
     $('.highscore').fadeIn(0);
 });
@@ -81,8 +75,7 @@ const gameReset = function () {
         });*/
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
-        newCard.classList.add('card');
-        newCard.classList.add('card-' + cardArray[i]);
+        newCard.classList.add('card', 'card-' + cardArray[i]);
         $(newCard).attr('id', i);
         $(newCard).attr('data', 'card-' + cardArray[i]);
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
@@ -93,14 +86,17 @@ const gameReset = function () {
     // reset rating, matches and timer
     matches = 5;
     rating.classList.remove('rating-2-3', 'rating-1-3');
-    clock.timer('reset');
+    clock.timer('remove');
+    clock.timer({
+        format: '%M:%S'
+    });
     clock.timer('pause');
+    gameStats.clicks = 0;
+    gameStats.rating = 1;
     cardData = '';
     cardId = 13;
-    //$('#timer').text('00:00');
     // hide all popups
     $('.full-screen').fadeOut(0);
-
 }
 
 /*Initial game reset*/
@@ -110,7 +106,7 @@ gameReset();
 /*card interaction*/
 
 $(document).on('click', '.card', function () {
-    clock.timer('start');
+    clock.timer('resume');
     // toggle .flipped class on card
     this.classList.toggle("flipped");
     // add 1 click to every 2 clicks
@@ -135,7 +131,6 @@ $(document).on('click', '.card', function () {
         console.log(matches);
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
-            //document.querySelectorAll('.card').classList.remove('flipped');
             $(card).removeClass('flipped');
         }, 900);
         cardData = '';
@@ -144,7 +139,6 @@ $(document).on('click', '.card', function () {
         cardData = $(this).attr('data');
         cardId = $(this).attr('id');
     }
-
     // evaluate number of succesful matches
     if (matches === 6) {
         clock.timer('pause');
