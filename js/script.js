@@ -22,6 +22,12 @@ const rating = document.getElementById('rating'),
     card = document.getElementsByClassName('card'),
     resetButton = document.getElementsByClassName('reset-button');
 
+/**/
+clock = $('#timer').timer({
+    format: '%M:%S'
+});
+clock.timer('pause');
+
 /*Buttons*/
 
 $(resetButton).on('click', function () {
@@ -63,61 +69,11 @@ $('#player-name-input').on('update', function () {
     //update gameStats with new value for name
 });
 
-/*timer*/
-
-const stopwatch = function () {
-    const currentTime = document.getElementById('timer');
-    if (!currentTime) return;
-
-    const api = {};
-    const duration = 1000;
-    let time = 0;
-    let clocktimer;
-    let m, s;
-
-    function pad(num, size) {
-        let s = "0000" + String(num);
-        return s.substr(s.length - size);
-    }
-
-    function formatTime() {
-        time += duration;
-        m = Math.floor(time / (60 * 1000) % 60);
-        s = Math.floor(time / 1000 % 60);
-        return pad(m, 2) + ':' + pad(s, 2);
-    }
-
-    function update() {
-        currentTime.innerHTML = formatTime();
-    }
-
-    api.start = function () {
-        clocktimer = setInterval(update, duration);
-        api.running = true;
-    }
-
-    api.stop = function () {
-        clearInterval(clocktimer);
-        api.running = false;
-    }
-
-    api.formatTime = formatTime;
-
-    api.reset = function () {
-        time = 0;
-    }
-
-    return api
-}
-
-let timer = stopwatch();
-timer.stop();
-
 /*game reset*/
 
 const gameReset = function () {
     // reset the board by randomizing the array
-    // cardArray.sort(function () {return 0.5 - Math.random()});
+     cardArray.sort(function () {return 0.5 - Math.random()});
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
@@ -132,11 +88,11 @@ const gameReset = function () {
     // reset rating, matches and timer
     matches = 0;
     rating.classList.remove('rating-2-3', 'rating-1-3');
-    timer.stop();
-    timer.reset();
+    clock.timer('reset');
+    clock.timer('pause');
     cardData = '';
     cardId = 13;
-    $('#timer').text('00:00');
+    //$('#timer').text('00:00');
     // hide all popups
     $('.full-screen').fadeOut(0);
 
@@ -149,13 +105,11 @@ gameReset();
 /*card interaction*/
 
 $(document).on('click', '.card', function () {
-    if (timer.running === false) {
-        timer.start();
-    }
+    clock.timer('start');
     // toggle .flipped class on card
     this.classList.toggle("flipped");
-    // add 1 click to clicks
-    gameStats.clicks += 0.5;
+    // add 1 click to every 2 clicks
+    gameStats.clicks++;
     // determine star rating by evaluating clicks
     if (gameStats.clicks > 14 && gameStats.clicks < 20) {
         rating.classList.add('rating-2-3');
@@ -176,9 +130,9 @@ $(document).on('click', '.card', function () {
         console.log(matches);
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
-        //document.querySelectorAll('.card').classList.remove('flipped');
-        $(card).removeClass('flipped');
-        }, 1000);
+            //document.querySelectorAll('.card').classList.remove('flipped');
+            $(card).removeClass('flipped');
+        }, 900);
         cardData = '';
         cardId = $(this).attr('id');
     } else {
@@ -188,12 +142,13 @@ $(document).on('click', '.card', function () {
 
     // evaluate number of succesful matches
     if (matches === 6) {
-        timer.stop()
-        gameStats.timer = timer.
-            // stop timer
-            // update score
-        gameStats.score = gameStats.timer * gameStats.clicks;
+        gameStats.clicks = gameStats.clicks / 2;
+        gameStats.timer = clock.data('seconds');;
+        clock.timer('pause');
+        // update score
+        gameStats.score = 1000 - gameStats.timer * gameStats.clicks / gameStats.rating;
         // display popup of success
+        console.log(gameStats.score);
         setTimeout(function () {
             winner.classList.remove('display-none');
         }, 500);
