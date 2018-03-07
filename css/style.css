@@ -120,6 +120,7 @@ h2 {
 /*nav*/
 nav {
   height: 45px;
+  max-height: 45px;
   background: white;
   box-sizing: border-box;
   box-shadow: 0 5px 0 0 rgba(0, 224, 246, 0.25);
@@ -146,9 +147,12 @@ nav .flex-container .heading {
   border-top: none;
   border-left: none;
   border-right: none;
+  max-height: 45px;
+  overflow: hidden;
 }
 nav .flex-container .heading h1 {
   line-height: 42px;
+  font-size: 16px;
 }
 nav .flex-container .rating {
   flex-basis: 80px;
@@ -341,6 +345,9 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
   background-size: 80px;
 }
 @media screen and (min-width: 360px) {
+  nav .flex-container .heading h1 {
+    font-size: 19px;
+  }
   .cards-container {
     display: grid;
     width: 330px;
@@ -349,8 +356,6 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
     grid-gap: 15px;
     padding: 0;
   }
-}
-@media screen and (min-width: 360px) {
   .popup-container .popup {
     width: 320px;
   }
