@@ -23,23 +23,28 @@
     <!--navigation-->
     <nav>
         <div class="flex-container">
+            <!--timer-->
             <div id="timer" class="timer">00:00</div>
-            <div class="reset-button desktop-only">reset</div>
+            <!--reset-->
+            <div id="reset-button" class="reset-button desktop-only">reset</div>
             <div class="heading">
                 <h1>Memory card game</h1></div>
+            <!--highscore-->
             <div class="highscore-button desktop-only">highscore</div>
-            <div class="rating"></div>
-            <div class="sub-menu flex-container">
+            <!--rating-->
+            <div id="rating" class="rating"></div>
+            <!--submenu-->
+            <div id="sub-menu" class="sub-menu flex-container">
                 <div class="reset-button">reset</div>
                 <div class="highscore-button">highscore</div>
-                <div class="pull-down">
+                <div id="pull-down" class="pull-down">
                     <div class="arrow"></div>
                 </div>
             </div>
         </div>
     </nav>
     <!--highscore-->
-    <div class="grid-container highscore full-screen">
+    <div id="highscore" class="grid-container highscore full-screen">
         <div class="flex-container">
             <div class="back-button"></div>
             <div class="heading">
@@ -59,7 +64,7 @@
         </div>
     </div>
     <!--reset popup-->
-    <div class="popup-container reset full-screen">
+    <div id="reset" class="popup-container reset full-screen">
         <div class="popup">
             <h2>are you sure you want<br>to reset the game?</h2>
             <div class="flex-container">
@@ -69,7 +74,7 @@
         </div>
     </div>
     <!--winner popup-->
-    <div class="popup-container winner full-screen display-none">
+    <div id="winner" class="popup-container winner full-screen display-none">
         <div class="popup">
             <h1>winner!</h1>
             <p>Enter name for High score</p>
@@ -83,7 +88,7 @@
     </div>
     <!--main content-->
     <main>
-        <div class="cards-container">
+        <div id="cards-container" class="cards-container">
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

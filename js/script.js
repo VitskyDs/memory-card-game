@@ -12,22 +12,30 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
         score: 1
     };
 
+const rating = document.getElementById('rating'),
+    highscore = document.getElementById('winner'),
+    reset = document.getElementById('reset'),
+    pullDown = document.getElementById('pull-down'),
+    winner = document.getElementById('winner'),
+    subMenu = document.getElementById('sub-menu'),
+    cardsContainer = document.getElementById('cards-container'),
+    card = document.getElementsByClassName('card'),
+    resetButton = document.getElementsByClassName('reset-button');
+
 /*Buttons*/
 
-$('.reset-button').on('click', function () {
+$(resetButton).on('click', function () {
     $('.reset').fadeIn(0);
-    $('.pull-down').toggleClass('down');
-    $('.sub-menu').removeClass('sub-menu-open');
+    subMenu.classList.remove('sub-menu-open');
 });
 
 $('.highscore-button, .back-button').on('click', function () {
     $('.highscore').fadeToggle(0);
-    $('.sub-menu').removeClass('sub-menu-open');
+    subMenu.classList.remove('sub-menu-open');
 });
 
-$('.pull-down').on('click', function () {
-    $('.pull-down').toggleClass('down');
-    $('.sub-menu').toggleClass('sub-menu-open')
+pullDown.addEventListener('click', function () {
+    subMenu.classList.toggle('sub-menu-open');
 });
 
 /*reset popup*/
@@ -39,11 +47,10 @@ $('.reset-approve').on('click', function () {
 $('.cancel-button').on('click', function () {
     // close popup
     $(this).closest('.popup-container').fadeOut(0);
-
 });
 
 $('#winner-approve').on('click', function () {
-    $('.winner').addClass('display-none');
+    winner.classList.add('display-none');
     gameStats.playerName = $('#playerName').val();
     localStorage.setItem(gameStats.playerName, gameStats.score);
     gameReset();
@@ -55,8 +62,6 @@ $('#winner-approve').on('click', function () {
 $('#player-name-input').on('update', function () {
     //update gameStats with new value for name
 });
-
-
 
 /*timer*/
 
@@ -112,9 +117,7 @@ timer.stop();
 
 const gameReset = function () {
     // reset the board by randomizing the array
-    cardArray.sort(function () {
-        return 0.5 - Math.random()
-    });
+    // cardArray.sort(function () {return 0.5 - Math.random()});
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
@@ -124,11 +127,11 @@ const gameReset = function () {
         newCard.innerHTML = '<div class="side-a"></div><div class="side-b"></div>';
         fragment.appendChild(newCard);
     }
-    $('.cards-container').empty();
-    $('.cards-container').append(fragment); // reset timer
+    cardsContainer.innerHTML = '';
+    cardsContainer.append(fragment); // reset timer
     // reset rating, matches and timer
     matches = 0;
-    $('.rating').removeClass('rating-2-3 rating-1-3');
+    rating.classList.remove('rating-2-3', 'rating-1-3');
     timer.stop();
     timer.reset();
     cardData = '';
@@ -152,18 +155,20 @@ $(document).on('click', '.card', function () {
     // toggle .flipped class on card
     this.classList.toggle("flipped");
     // add 1 click to clicks
-    gameStats.clicks++;
+    gameStats.clicks += 0.5;
     // determine star rating by evaluating clicks
     if (gameStats.clicks > 14 && gameStats.clicks < 20) {
-        $('.rating').addClass('rating-2-3');
+        rating.classList.add('rating-2-3');
         gameStats.rating = 2;
     } else if (gameStats.clicks >= 20) {
-        $('.rating').addClass('rating-1-3');
+        rating.classList.remove('rating-2-3');
+        rating.classList.add('rating-1-3');
         gameStats.rating = 3;
     }
     // evaluate cards
     if (cardData === $(this).attr('data') && cardId != $(this).attr('id')) {
         $('*[data=' + cardData + ']').addClass('done');
+        //document.querySelector('*[data=' + cardData + ']').classList.add('done');
         cardData = '';
         matches++;
         cardId = $(this).attr('id');
@@ -171,7 +176,8 @@ $(document).on('click', '.card', function () {
         console.log(matches);
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
-            $('.card').removeClass('flipped');
+        //document.querySelectorAll('.card').classList.remove('flipped');
+        $(card).removeClass('flipped');
         }, 1000);
         cardData = '';
         cardId = $(this).attr('id');
@@ -180,7 +186,7 @@ $(document).on('click', '.card', function () {
         cardId = $(this).attr('id');
     }
 
-    //
+    // evaluate number of succesful matches
     if (matches === 6) {
         timer.stop()
         gameStats.timer = timer.
@@ -189,7 +195,7 @@ $(document).on('click', '.card', function () {
         gameStats.score = gameStats.timer * gameStats.clicks;
         // display popup of success
         setTimeout(function () {
-            $('.winner').removeClass('display-none');
+            winner.classList.remove('display-none');
         }, 500);
     }
 });
