@@ -13,7 +13,7 @@ let cardArray = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
     };
 
 const rating = document.getElementById('rating'),
-    highscore = document.getElementById('winner'),
+    highscore = document.getElementById('highscore'),
     reset = document.getElementById('reset'),
     pullDown = document.getElementById('pull-down'),
     winner = document.getElementById('winner'),
@@ -51,29 +51,34 @@ $('.reset-approve').on('click', function () {
 });
 
 $('.cancel-button').on('click', function () {
-    // close popup
     $(this).closest('.popup-container').fadeOut(0);
 });
 
 $('#winner-approve').on('click', function () {
     winner.classList.add('display-none');
     gameStats.playerName = $('#playerName').val();
-    localStorage.setItem(gameStats.playerName, gameStats.score);
+    localStorage.setItem('score', gameStats.score);
+    localStorage.setItem('player', gameStats.playerName);
+    // use local storage add rows to highscore
+    //$(highscore).find('ul').prepend('li').html('<span class="player">' + localStorage.getItem('player') + '</span><span class="score">' + localStorage.getItem('score') + '</span>');
+    //const row = document.createElement('li');
+    document.querySelector('ul').insertAdjacentHTML('afterbegin', '<li><span class="player">' + localStorage.getItem('player') + '</span><span class="score">' + localStorage.getItem('score') + '</span></li>');
+    //document.querySelector('ul').appendChild(row);
     gameReset();
     $('.highscore').fadeIn(0);
 });
 
 /*input player name*/
-
 $('#player-name-input').on('update', function () {
     //update gameStats with new value for name
 });
 
 /*game reset*/
-
 const gameReset = function () {
     // reset the board by randomizing the array
-     cardArray.sort(function () {return 0.5 - Math.random()});
+    /*    cardArray.sort(function () {
+            return 0.5 - Math.random()
+        });*/
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card');
@@ -86,7 +91,7 @@ const gameReset = function () {
     cardsContainer.innerHTML = '';
     cardsContainer.append(fragment); // reset timer
     // reset rating, matches and timer
-    matches = 0;
+    matches = 5;
     rating.classList.remove('rating-2-3', 'rating-1-3');
     clock.timer('reset');
     clock.timer('pause');
@@ -142,13 +147,12 @@ $(document).on('click', '.card', function () {
 
     // evaluate number of succesful matches
     if (matches === 6) {
+        clock.timer('pause');
         gameStats.clicks = gameStats.clicks / 2;
         gameStats.timer = clock.data('seconds');;
-        clock.timer('pause');
         // update score
         gameStats.score = 1000 - gameStats.timer * gameStats.clicks / gameStats.rating;
         // display popup of success
-        console.log(gameStats.score);
         setTimeout(function () {
             winner.classList.remove('display-none');
         }, 500);
