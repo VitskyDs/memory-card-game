@@ -386,6 +386,25 @@ nav {
     }
 }
 
+/*particles*/
+
+#particle-container {
+    background: transparent;
+    border: none;
+    div {
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        left: 50%;
+        top: 50%;
+        //position: absolute;
+        background-color: #f9f871;
+        &:nth-child(even) {
+            background-color: @secondary;
+        }
+    }
+}
+
 /*Animations*/
 
 @keyframes winner-heading {

@@ -25,6 +25,44 @@ const rating = document.getElementById('rating'),
         format: '%M:%S'
     });
 
+/*Functions*/
+
+const particleAnimation = function () {
+    function random(min, max) {
+        return Math.floor(Math.random() * (1 + max - min) + min);
+    }
+
+    // setup
+
+    const tlexplosion = new TimelineMax(),
+        container = $("#particle-container"),
+        dotsCount = 50;
+    let html = "";
+
+    for (let i = 0; i < dotsCount; i++) {
+        html += "<div class='particle'></div>";
+    }
+
+    const dots = $(html).appendTo(container);
+
+    // animation
+
+    dots.each(function () {
+        tlexplosion.add(TweenMax.fromTo(this, 3, {
+            z: random(-700, 700),
+            opacity: 1,
+            rotation: 0
+        }, {
+            left: "+=" + random(-60, 60) + "%",
+            top: "+=" + random(-66, 66) + "%",
+            z: "+=" + random(-725, 600),
+            opacity: 0,
+            rotation: 10 * random(100, 300),
+            ease: Power3.easeOut
+        }), 0);
+    });
+}
+
 /*Buttons*/
 
 $(resetButton).on('click', function () {
@@ -146,9 +184,13 @@ $(document).on('click', '.card', function () {
         gameStats.timer = clock.data('seconds');;
         // update score
         gameStats.score = 1000 - gameStats.timer * gameStats.clicks / gameStats.rating;
+        //blow confetti
+        $('#particle-container').fadeIn(0);
+        /*particle animation*/
+particleAnimation();
         // display popup of success
         setTimeout(function () {
             winner.classList.remove('display-none');
-        }, 500);
+        }, 2250);
     }
 });

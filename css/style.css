@@ -348,6 +348,22 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
   background: white url('../images/squirtle.svg') no-repeat center center;
   background-size: 80px;
 }
+/*particles*/
+#particle-container {
+  background: transparent;
+  border: none;
+}
+#particle-container div {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  left: 50%;
+  top: 50%;
+  background-color: #f9f871;
+}
+#particle-container div:nth-child(even) {
+  background-color: #9234a5;
+}
 /*Animations*/
 @keyframes winner-heading {
   0% {
