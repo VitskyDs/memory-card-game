@@ -27,17 +27,17 @@ const rating = document.getElementById('rating'),
 
 /*Functions*/
 
-const particleAnimation = function () {
-    function random(min, max) {
+function random(min, max) {
         return Math.floor(Math.random() * (1 + max - min) + min);
     }
 
-    // setup
-
+function particleAnimation(particleNum) {
     const tlexplosion = new TimelineMax(),
         container = $("#particle-container"),
-        dotsCount = 50;
+        dotsCount = Number(Math.round(particleNum / 10));
     let html = "";
+
+    console.log(dotsCount);
 
     for (let i = 0; i < dotsCount; i++) {
         html += "<div class='particle'></div>";
@@ -46,7 +46,6 @@ const particleAnimation = function () {
     const dots = $(html).appendTo(container);
 
     // animation
-
     dots.each(function () {
         tlexplosion.add(TweenMax.fromTo(this, 3, {
             z: random(-700, 700),
@@ -58,7 +57,7 @@ const particleAnimation = function () {
             z: "+=" + random(-725, 600),
             opacity: 0,
             rotation: 10 * random(100, 300),
-            ease: Power3.easeOut
+            ease: Power2.easeOut
         }), 0);
     });
 }
@@ -187,7 +186,7 @@ $(document).on('click', '.card', function () {
         //blow confetti
         $('#particle-container').fadeIn(0);
         /*particle animation*/
-particleAnimation();
+        particleAnimation(gameStats.score);
         // display popup of success
         setTimeout(function () {
             winner.classList.remove('display-none');
