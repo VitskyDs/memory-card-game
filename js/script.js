@@ -167,7 +167,7 @@ $(document).on('click', '.card', function () {
         console.log(cardId);
         console.log(matches);
         $('#particle-container').fadeIn(0);
-        particleAnimation(100);
+        particleAnimation(150);
         setTimeout(function () {
             $('#particle-container').fadeOut(0)
         }, 1000);
