@@ -187,7 +187,7 @@ $(document).on('click', '.card', function () {
         gameStats.clicks = gameStats.clicks / 2;
         gameStats.timer = clock.data('seconds');;
         // update score
-        gameStats.score = 1000 - gameStats.timer * gameStats.clicks / gameStats.rating;
+        gameStats.score = Number(Math.round(1000 - gameStats.timer * gameStats.clicks / gameStats.rating));
         //blow confetti
         $('#particle-container').fadeIn(0);
         /*particle animation*/
