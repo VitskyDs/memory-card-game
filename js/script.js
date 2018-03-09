@@ -28,8 +28,8 @@ const rating = document.getElementById('rating'),
 /*Functions*/
 
 function random(min, max) {
-        return Math.floor(Math.random() * (1 + max - min) + min);
-    }
+    return Math.floor(Math.random() * (1 + max - min) + min);
+}
 
 function particleAnimation(particleNum) {
     const tlexplosion = new TimelineMax(),
@@ -47,7 +47,7 @@ function particleAnimation(particleNum) {
 
     // animation
     dots.each(function () {
-        tlexplosion.add(TweenMax.fromTo(this, 3, {
+        tlexplosion.add(TweenMax.fromTo(this, 1.5, {
             z: random(-700, 700),
             opacity: 1,
             rotation: 0
@@ -107,9 +107,9 @@ $('#player-name-input').on('update', function () {
 /*game reset*/
 const gameReset = function () {
     // reset the board by randomizing the array
-    /*    cardArray.sort(function () {
-            return 0.5 - Math.random()
-        });*/
+    cardArray.sort(function () {
+        return 0.5 - Math.random()
+    });
     for (let i = 0; i < 12; i++) {
         const newCard = document.createElement('div');
         newCard.classList.add('card', 'card-' + cardArray[i]);
@@ -121,7 +121,7 @@ const gameReset = function () {
     cardsContainer.innerHTML = '';
     cardsContainer.append(fragment); // reset timer
     // reset rating, matches and timer
-    matches = 5;
+    matches = 0;
     rating.classList.remove('rating-2-3', 'rating-1-3');
     clock.timer('remove');
     clock.timer({
@@ -166,6 +166,11 @@ $(document).on('click', '.card', function () {
         cardId = $(this).attr('id');
         console.log(cardId);
         console.log(matches);
+        $('#particle-container').fadeIn(0);
+        particleAnimation(100);
+        setTimeout(function () {
+            $('#particle-container').fadeOut(0)
+        }, 1000);
     } else if (gameStats.clicks % 2 === 0) {
         setTimeout(function () {
             $(card).removeClass('flipped');
@@ -190,6 +195,6 @@ $(document).on('click', '.card', function () {
         // display popup of success
         setTimeout(function () {
             winner.classList.remove('display-none');
-        }, 2250);
+        }, 1500);
     }
 });
