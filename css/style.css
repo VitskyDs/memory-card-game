@@ -136,17 +136,17 @@ nav .flex-container > div {
   box-sizing: border-box;
   line-height: 42px;
   font-size: 19px;
-  z-index: 10;
+  z-index: 50;
   background: white;
 }
 nav .flex-container .timer {
   flex-basis: 80px;
   text-align: left;
-  font-size: 19px;
+  font-size: 17px;
   line-height: 41px;
   border-left: none;
   border-top: none;
-  padding: 0 0 0 13px;
+  padding: 0 0 0 16px;
 }
 nav .flex-container .heading {
   flex-grow: 2;
@@ -180,7 +180,7 @@ nav .flex-container .sub-menu {
   top: 0;
   left: 0;
   background: white;
-  z-index: 0 !important;
+  z-index: 40;
   display: flex;
   justify-content: space-between;
   height: 45px;
@@ -287,7 +287,7 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
 }
 /*cards*/
 .cards-container {
-  margin: 50px auto 0 auto;
+  margin: 25px auto 0 auto;
 }
 .cards-container .card {
   position: relative;
@@ -327,30 +327,31 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
 .cards-container .card .side-b {
   background: white;
   transform: rotateY(180deg);
+  background-size: 70px;
 }
 .cards-container .card.card-1 .side-b {
   background: white url('../images/bulbasaur.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 .cards-container .card.card-2 .side-b {
   background: white url('../images/charmander.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 .cards-container .card.card-3 .side-b {
   background: white url('../images/pokeball.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 .cards-container .card.card-4 .side-b {
   background: white url('../images/jigglypuff.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 .cards-container .card.card-5 .side-b {
   background: white url('../images/pikachu.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 .cards-container .card.card-6 .side-b {
   background: white url('../images/squirtle.svg') no-repeat center center;
-  background-size: 80px;
+  background-size: 70px;
 }
 /*particles*/
 #particle-container {
@@ -387,6 +388,7 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
     text-shadow: 2px 2px 0 #00f2d6;
   }
 }
+/*Media Queries*/
 @media screen and (min-width: 360px) {
   nav .flex-container .heading h1 {
     font-size: 19px;
@@ -446,11 +448,11 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
   /*Grid*/
   .cards-container {
     display: grid;
-    width: 660px;
-    grid-template-columns: repeat(4, 150px);
-    grid-template-rows: repeat(3, 150px);
+    width: 545px;
+    grid-template-columns: repeat(4, 125px);
+    grid-template-rows: repeat(3, 125px);
     grid-gap: 20xp;
-    margin: 60px auto 0 auto;
+    margin: 30px auto;
   }
   /*highscore*/
   .highscore ul {
