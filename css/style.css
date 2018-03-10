@@ -135,31 +135,37 @@ nav .flex-container > div {
   border: 4px solid #00f2d6;
   box-sizing: border-box;
   line-height: 42px;
-  font-size: 19px;
+  font-size: 17px;
   z-index: 50;
   background: white;
+  max-height: 45px;
 }
 nav .flex-container .timer {
   flex-basis: 80px;
   text-align: left;
-  font-size: 17px;
-  line-height: 41px;
   border-left: none;
   border-top: none;
   padding: 0 0 0 16px;
 }
 nav .flex-container .heading {
+  display: none;
   flex-grow: 2;
   text-align: center;
   border-top: none;
   border-left: none;
   border-right: none;
-  max-height: 45px;
   overflow: hidden;
 }
 nav .flex-container .heading h1 {
   line-height: 42px;
-  font-size: 16px;
+}
+nav .flex-container #moves-counter {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  flex-basis: 150px;
+  flex-grow: 2;
+  text-align: center;
 }
 nav .flex-container .rating {
   flex-basis: 80px;
@@ -192,11 +198,9 @@ nav .flex-container .sub-menu {
 }
 nav .flex-container .sub-menu div {
   flex-basis: 50%;
+  flex-grow: 1;
   text-align: center;
   line-height: 40px;
-}
-nav .flex-container .sub-menu .reset-button {
-  border-right: none;
 }
 nav .flex-container .sub-menu .pull-down {
   position: absolute;
@@ -392,9 +396,6 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
 }
 /*Media Queries*/
 @media screen and (min-width: 360px) {
-  nav .flex-container .heading h1 {
-    font-size: 19px;
-  }
   .cards-container {
     display: grid;
     width: 330px;
@@ -425,24 +426,27 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
     background-size: 8px;
   }
   /*nav*/
-  nav .flex-container .reset-button,
-  nav .flex-container .highscore-button {
+  nav .flex-container .reset-button {
     flex-basis: 150px;
     text-align: center;
+    border-top: none;
+    border-left: none;
   }
-  nav .flex-container .reset-button:hover,
-  nav .flex-container .highscore-button:hover {
+  nav .flex-container:hover {
     color: white;
     background: #00f2d6;
     cursor: pointer;
   }
-  nav .flex-container .reset-button {
-    border-top: none;
-    border-left: none;
+  nav .flex-container .heading {
+    display: block;
   }
-  nav .flex-container .highscore-button {
-    border-top: none;
-    border-right: none;
+  nav .flex-container .heading h1 {
+    font-size: 19px;
+  }
+  nav .flex-container #moves-counter {
+    border-left: 4px solid #00f2d6;
+    flex-basis: 150px;
+    flex-grow: 0;
   }
   nav .flex-container .sub-menu {
     display: none !important;

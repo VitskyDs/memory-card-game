@@ -115,6 +115,7 @@ const gameReset = function () {
     cardsContainer.append(fragment);
 
     // reset rating, matches and timer
+    $('#moves-counter').text(` ${gameStats.clicks / 2} moves`);
     matches = 0;
     rating.classList.remove('rating-2-3', 'rating-1-3');
     clock.timer('remove');
@@ -146,10 +147,10 @@ $(document).on('click', '.card', function () {
         //add 1 to click count
         gameStats.clicks++;
         //determine rating
-        if (gameStats.clicks > 14 && gameStats.clicks < 20) {
+        if (gameStats.clicks > 16 && gameStats.clicks < 22) {
             rating.classList.add('rating-2-3');
             gameStats.rating = 2;
-        } else if (gameStats.clicks >= 20) {
+        } else if (gameStats.clicks >= 22) {
             rating.classList.remove('rating-2-3');
             rating.classList.add('rating-1-3');
             gameStats.rating = 1;
@@ -157,7 +158,7 @@ $(document).on('click', '.card', function () {
         //add flipped class
         $(this).addClass('flipped');
         // update move counter
-        if (gameStats.clicks % 2 === 0){
+        if (gameStats.clicks % 2 === 0) {
             $('#moves-counter').text(` ${gameStats.clicks / 2} moves`);
         }
         //evaluate cards
@@ -198,7 +199,7 @@ $(document).on('click', '.card', function () {
             //display popup of success
             setTimeout(function () {
                 winner.classList.remove('display-none');
-            }, 1500);
+            }, 1250);
         }
     }
 });
