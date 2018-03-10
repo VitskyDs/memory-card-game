@@ -171,7 +171,7 @@ $(document).on('click', '.card', function () {
             }, 1000);
         } else if (gameStats.clicks % 2 === 0) {
             setTimeout(function () {
-                $(card).removeClass('flipped');
+                $('.card').removeClass('flipped');
             }, 900);
             cardData = '';
             cardId = $(this).attr('id');
