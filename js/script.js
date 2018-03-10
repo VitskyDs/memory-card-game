@@ -140,7 +140,7 @@ $(document).on('click', '.card', function () {
     clock.timer('resume');
 
     //card logic
-    if ($('.flipped').length >= 2) {
+    if ($('.flipped').length >= 2 || $(this).hasClass('flipped')) {
         return
     } else {
         //add 1 to click count
