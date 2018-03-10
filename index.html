@@ -31,7 +31,7 @@
             <div class="heading">
                 <h1>Memory card game</h1></div>
             <!--highscore-->
-            <div class="highscore-button desktop-only">highscore</div>
+            <div id="moves-counter" class="">0 moves</div>
             <!--rating-->
             <div id="rating" class="rating"></div>
             <!--submenu-->
@@ -79,6 +79,7 @@
     <div id="winner" class="popup-container winner full-screen display-none">
         <div class="popup">
             <h1>winner!</h1>
+            <p id="game-summary"></p>
             <p>Enter name for High score</p>
             <div class="input-wrapper">
                 <input id="playerName" type="text" placeholder="player" maxlength="25">

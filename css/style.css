@@ -53,7 +53,7 @@
   background: white url('../images/dot-blue-XS-01-01.png') repeat;
   background-size: 8px;
   box-sizing: border-box;
-  z-index: 20;
+  z-index: 100;
 }
 .popup-container {
   display: flex;
@@ -229,7 +229,6 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
 /*highscore*/
 .highscore {
   background: white;
-  z-index: 20;
 }
 .highscore .flex-container {
   position: relative;
@@ -279,6 +278,9 @@ nav .flex-container .sub-menu.sub-menu-open .pull-down .arrow {
   box-sizing: border-box;
 }
 /*winner*/
+.winner p {
+  line-height: 24px;
+}
 .winner h1 {
   font-size: 26px;
   margin: 15px 0 0 0;

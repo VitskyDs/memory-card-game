@@ -15,7 +15,7 @@ const rating = document.getElementById('rating'),
     resetButton = document.getElementsByClassName('reset-button'),
     gameStats = {
         playerName: '',
-        rating: 1,
+        rating: 3,
         timer: '',
         clicks: 0,
         score: 1
@@ -152,14 +152,17 @@ $(document).on('click', '.card', function () {
         } else if (gameStats.clicks >= 20) {
             rating.classList.remove('rating-2-3');
             rating.classList.add('rating-1-3');
-            gameStats.rating = 3;
+            gameStats.rating = 1;
         }
         //add flipped class
         $(this).addClass('flipped');
+        // update move counter
+        if (gameStats.clicks % 2 === 0){
+            $('#moves-counter').text(` ${gameStats.clicks / 2} moves`);
+        }
         //evaluate cards
         if (cardData === $(this).attr('data') && cardId != $(this).attr('id')) {
             $('*[data=' + cardData + ']').addClass('done');
-            //document.querySelector('*[data=' + cardData + ']').classList.add('done');
             cardData = '';
             matches++;
             cardId = $(this).attr('id');
@@ -184,13 +187,15 @@ $(document).on('click', '.card', function () {
             clock.timer('pause');
             gameStats.clicks = gameStats.clicks / 2;
             gameStats.timer = clock.data('seconds');;
-            // update score
+            //update score
             gameStats.score = Number(Math.round(1000 - gameStats.timer * gameStats.clicks / gameStats.rating));
             //blow confetti
             $('#particle-container').fadeIn(0);
             //particle animation
             particleAnimation(gameStats.score);
-            // display popup of success
+            //add summary paragraph
+            $('#game-summary').text(`GG! Your rating is ${gameStats.rating} stars, and your time was ${gameStats.timer} seconds.`);
+            //display popup of success
             setTimeout(function () {
                 winner.classList.remove('display-none');
             }, 1500);
